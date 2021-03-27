@@ -1,1 +1,15 @@
+//Create a resource group at the sub level (why do we need to specify location in the commmand?)
+az deployment sub create --location eastus --template-file ./rgdeploy.json
+
+
+//Create a storage account
 az deployment group create --resource-group rg-arm-123 --template-file ./storagedeploy.json --parameters ./storagedeploy.parameters.json
+
+
+//Create a resoruce-group then a stoages account inside of it (Hello annoying nested temlates)
+//Also the rg (rg1) specified in the command does not have to exist 
+az deployment sub create --name "rg1" --location "West Europe" --template-file rgandstoragedeploy.json 
+
+//Keyvault create
+az keyvault create --resource-group rg1 --template-file ./keyvaultdeploy.json --parameters ./keyvaultdeploy.parameters.json
+
