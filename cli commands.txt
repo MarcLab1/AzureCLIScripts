@@ -1,0 +1,1 @@
+az deployment group create --resource-group rg-arm-123 --template-file ./storagedeploy.json --parameters ./storagedeploy.parameters.json
