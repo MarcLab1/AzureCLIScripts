@@ -1,0 +1,33 @@
+//Create a rg
+az group create --name rg-test-456 --location CanadaCentral
+
+//Set Defaults
+az configure --defaults group=rg-test-456 location=CanadaCentral
+
+//Create app service plan (Basic is the default, is-linux is false)
+az appservice plan create --name appserviceplan456 --resource-group rg-test-456
+
+//Update app service plan to be free
+az appservice plan update --name appserviceplan456 --resource-group rg-test-456 --sku FREE
+
+//Create a storage account
+az storage account create --resource-group rg-test-456 --name st123smell
+
+//Create app insights
+az monitor app-insights component create --app appinsights-webapp-456  --resource-group rg-test-456 
+
+//Create tags on a resource group
+az tag create --resource-id /subscriptions/96c09541-ee61-4e57-94df-16d6ed62e757/resourcegroups/rg-test-456 --tags Class=AZ204
+
+//Get the id of a resource
+az appservice plan show --name appserviceplan456 --query id
+
+//Create tags on a resource
+az tag create --resource-id "/subscriptions/96c09541-ee61-4e57-94df-16d6ed62e757/resourceGroups/rg-test-456/providers/Microsoft.Web/serverfarms/appserviceplan456" --tags Class=AZ204
+
+//Create an app service
+az webapp create --name webapp456smelly --resource-group rg-test-456 --plan appserviceplan456 --runtime "DOTNETCORE|3.1" 
+
+//Delete the app service (also deletes the app service plan)
+az webapp delete --name webapp456smelly --resource-group rg-test-456
+

@@ -16,7 +16,11 @@
             "defaultValue": "[concat(parameters('frontName'), parameters('suffixName'))]"
         }
     },
-    "functions": [],
+    "functions": [
+
+        
+
+    ],
     "variables": {
 
     },

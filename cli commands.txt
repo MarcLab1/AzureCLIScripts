@@ -10,6 +10,12 @@ az deployment group create --resource-group rg-arm-123 --template-file ./storage
 //Also the rg (rg1) specified in the command does not have to exist 
 az deployment sub create --name "rg1" --location "West Europe" --template-file rgandstoragedeploy.json 
 
-//Keyvault create
-az keyvault create --resource-group rg1 --template-file ./keyvaultdeploy.json --parameters ./keyvaultdeploy.parameters.json
+//Virtual Network create
+az deployment group create --resource-group rg1 --template-file ./vnetdeploy.json --parameters ./vnetdeploy.parameters.json
+
+//Then delete 
+az network vnet delete --name vnetd5ixn5h63ng4i --resource-group rg1
+
+//Storage with user defined funcitons
+az deployment group create --resource-group rg1 --template-file .\storagedeployUserDefinedFunction.json 
 
